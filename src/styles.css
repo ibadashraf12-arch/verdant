@@ -1,0 +1,220 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* VerdantAI brand */
+  --color-primary-container: var(--primary-container);
+  --color-surface: var(--surface);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-on-primary: var(--on-primary);
+  --color-coral: var(--coral);
+  --color-coral-foreground: var(--coral-foreground);
+  --color-sand: var(--sand);
+  --color-leaf: var(--leaf);
+
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Source Sans 3", sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.985 0.003 100);
+  --foreground: oklch(0.22 0.01 180);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.01 180);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.01 180);
+
+  /* Deep forest */
+  --primary: oklch(0.27 0.05 150);
+  --primary-foreground: oklch(1 0 0);
+  --primary-container: oklch(0.36 0.07 150);
+  --on-primary: oklch(1 0 0);
+
+  --secondary: oklch(0.94 0.02 130);
+  --secondary-foreground: oklch(0.27 0.05 150);
+
+  --muted: oklch(0.95 0.005 100);
+  --muted-foreground: oklch(0.5 0.01 150);
+
+  --accent: oklch(0.92 0.04 90);
+  --accent-foreground: oklch(0.27 0.05 150);
+
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.9 0.01 150);
+  --input: oklch(0.9 0.01 150);
+  --ring: oklch(0.5 0.05 150);
+
+  --surface: oklch(0.985 0.003 100);
+  --surface-container: oklch(0.96 0.005 100);
+  --surface-container-lowest: oklch(1 0 0);
+  --surface-container-highest: oklch(0.92 0.005 100);
+  --surface-variant: oklch(0.92 0.005 100);
+  --on-surface-variant: oklch(0.4 0.01 150);
+
+  /* Coral accent #D27685 */
+  --coral: oklch(0.82 0.15 145);
+  --coral-foreground: oklch(0.25 0.05 145);
+
+  /* Warm sand #E8DFCA */
+  --sand: oklch(0.91 0.025 85);
+
+  /* Sage leaf #4F6F52 */
+  --leaf: oklch(0.46 0.06 145);
+
+  --chart-1: oklch(0.46 0.06 145);
+  --chart-2: oklch(0.66 0.11 14);
+  --chart-3: oklch(0.91 0.025 85);
+  --chart-4: oklch(0.27 0.05 150);
+  --chart-5: oklch(0.5 0.05 150);
+}
+
+.dark {
+  --background: oklch(0.18 0.01 150);
+  --foreground: oklch(0.98 0.003 100);
+  --card: oklch(0.22 0.02 150);
+  --card-foreground: oklch(0.98 0.003 100);
+  --popover: oklch(0.22 0.02 150);
+  --popover-foreground: oklch(0.98 0.003 100);
+  --primary: oklch(0.72 0.08 150);
+  --primary-foreground: oklch(0.18 0.01 150);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+/* ─── Grain texture overlay on body ───────────────────────────────────────── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* SVG feTurbulence grain rendered as an inline data URI */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.028;
+  mix-blend-mode: multiply;
+}
+
+/* ─── Dot-grid on page background ─────────────────────────────────────────── */
+body {
+  background-image: radial-gradient(
+    circle,
+    oklch(0.55 0.03 120 / 0.18) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* ─── Linen crosshatch on section/main containers ─────────────────────────── */
+.bg-background {
+  background-image:
+    /* horizontal hair-lines */
+    repeating-linear-gradient(
+      0deg,
+      oklch(0.5 0.02 120 / 0.04) 0px,
+      oklch(0.5 0.02 120 / 0.04) 1px,
+      transparent 1px,
+      transparent 32px
+    ),
+    /* vertical hair-lines */
+    repeating-linear-gradient(
+      90deg,
+      oklch(0.5 0.02 120 / 0.04) 0px,
+      oklch(0.5 0.02 120 / 0.04) 1px,
+      transparent 1px,
+      transparent 32px
+    );
+}
+
+/* ─── Paper stipple on white card surfaces ────────────────────────────────── */
+.bg-surface-container-lowest,
+.bg-card {
+  position: relative;
+  isolation: isolate;
+}
+.bg-surface-container-lowest::after,
+.bg-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23p)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+}
+/* ensure card children stay above the pseudo-element */
+.bg-surface-container-lowest > *:not(.absolute),
+.bg-card > *:not(.absolute) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Testimonial carousel progress bar ───────────────────────────────────── */
+@keyframes progress-bar {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@utility organic-mask {
+  mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="black" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.3,-46.3C90.8,-33.5,96.9,-18,97.2,-2.3C97.5,13.4,92.1,29,82.4,42C72.7,55,58.7,65.4,43.6,71.9C28.5,78.4,12.3,81,-3.5,86C-19.3,91,-34.7,78.4,-47.9,67.6C-61.1,56.8,-72.1,47.8,-80.1,35.6C-88.1,23.4,-93.1,8,-90.6,-6C-88.1,-20,-78.1,-32.6,-66.6,-41.8C-55.1,-51,-42.1,-56.8,-29.7,-64.1C-17.3,-71.4,-5.5,-80.2,6.5,-87.3C18.5,-94.4,26.7,-99.8,33.5,-92.9Z" transform="translate(100 100)"/></svg>');
+  mask-size: cover;
+  mask-position: center;
+  mask-repeat: no-repeat;
+}
